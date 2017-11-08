@@ -5,11 +5,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import mean_absolute_error
 
-
+# data loading into matricies
 X=np.load('X.npy')
 Y=np.load('Y.npy')
 
-
+# Number of training set
 m=X.shape[0]
 	
 #feature normaliaztion
@@ -33,7 +33,9 @@ Xsq=np.multiply(X,X)
 Xtq=np.power(X,3)
 X=np.append(X,Xsq,axis=1)
 """
-m1=X.shape[0]
+
+
+# for ploting the error colleration with the number of instances (m)
 """
 valErr=[]
 trainErr=[]
@@ -81,10 +83,13 @@ plt.xlabel('Traing Examples')
 plt.ylabel('mean absulote error')
 plt.show()
 """
+
+# 10 fold error
 c=0
 err=[]
 
 for k in range(10):
+	# split data into train and test
 	test_arr=range(c,c+10)
 	c+=10
 	Xt=Xn
@@ -96,6 +101,8 @@ for k in range(10):
 		Yval[i]=Y[test_arr[i]-i]
 		Xt=np.delete(Xt,test_arr[i]-i,0)
 		Yt=np.delete(Yt,test_arr[i]-i,0)
+		
+	# NN best params
 ##################(activation='relu',hidden_layer_sizes=(60,60,60,60),max_iter=1500,solver='lbfgs',alpha=.011,learning_rate_init=0.0001)
 	NN=MLPRegressor(activation='relu',hidden_layer_sizes=(60,60,60,60),max_iter=1500,solver='lbfgs',alpha=.011,learning_rate_init=0.0001)
 	NN.fit(Xt,Yt)
