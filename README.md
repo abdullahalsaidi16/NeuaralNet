@@ -4,6 +4,6 @@ This is basic feedforward Neuaral net training and testing through 10 fold error
 ***************************
 Dependencies :
 
-	sklear 
+	sklearn 
 	numpy 
 	matplotlib
